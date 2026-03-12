@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open大观园</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div class="app-container">
+            <!-- 侧边栏 -->
+            <aside class="sidebar" :class="{ collapsed: sidebarCollapsed }">
+                <div class="sidebar-header">
+                    <h1 class="logo">📚 Open大观园</h1>
+                    <button class="collapse-btn" @click="sidebarCollapsed = !sidebarCollapsed">
+                        {{ sidebarCollapsed ? '→' : '←' }}
+                    </button>
+                </div>
+
+                <div class="chapter-section">
+                    <div class="section-title">章节目录</div>
+                    <div class="chapter-list">
+                        <div v-for="(sections, chapter) in chapterTree" :key="chapter" class="chapter-group">
+                            <div class="chapter-name" @click="toggleChapter(chapter)">
+                                <span class="expand-icon">{{ expandedChapters.includes(chapter) ? '▼' : '▶' }}</span>
+                                {{ chapter }}
+                            </div>
+                            <div v-show="expandedChapters.includes(chapter)" class="section-list">
+                                <div v-for="section in sections" :key="section"
+                                     class="section-item"
+                                     :class="{ active: currentSection === `${chapter}-${section}` }"
+                                     @click="selectSection(chapter, section)">
+                                    {{ section }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- 主内容区 -->
+            <main class="main-content">
+                <div class="content-header">
+                    <div class="header-left">
+                        <select v-model="selectedChapterSection" @change="onSectionChange" class="chapter-select">
+                            <option value="">选择章节</option>
+                            <option v-for="opt in chapterOptions" :key="opt.value" :value="opt.value">
+                                {{ opt.label }}
+                            </option>
+                        </select>
+                        <div class="question-progress">
+                            <span class="current">{{ currentIndex + 1 }}</span>
+                            <span class="separator">/</span>
+                            <span class="total">{{ filteredQuestions.length }}</span>
+                        </div>
+                    </div>
+                    <div class="header-right">
+                        <button class="nav-btn" @click="prevQuestion" :disabled="currentIndex === 0">
+                            ← 上一题
+                        </button>
+                        <button class="nav-btn" @click="nextQuestion" :disabled="currentIndex >= filteredQuestions.length - 1">
+                            下一题 →
+                        </button>
+                    </div>
+                </div>
+
+                <div v-if="currentQuestion" class="question-container">
+                    <div class="question-card">
+                        <div class="question-header">
+                            <div class="question-meta">
+                                <span class="question-number">#{{ currentQuestion.id }}</span>
+                                <span class="tag tag-difficulty" :class="'difficulty-' + currentQuestion.difficulty">{{ currentQuestion.difficulty }}</span>
+                                <span class="tag tag-chapter">{{ currentQuestion.chapter }}</span>
+                                <span class="tag tag-section">{{ currentQuestion.section }}</span>
+                                <span class="tag tag-source">{{ currentQuestion.source }}</span>
+                            </div>
+                        </div>
+
+                        <div class="question-body">
+                            <div class="question-content" v-html="currentQuestion.content"></div>
+
+                            <div v-if="currentQuestion.options" class="question-options">
+                                <div v-for="(option, index) in currentQuestion.options"
+                                     :key="index"
+                                     class="option-item">
+                                    <span class="option-label">{{ String.fromCharCode(65 + index) }}.</span>
+                                    <span class="option-text" v-html="option"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question-actions">
+                            <button class="action-btn btn-answer" @click="showAnswer = !showAnswer">
+                                {{ showAnswer ? '隐藏答案' : '查看答案' }}
+                            </button>
+                            <button class="action-btn btn-solution" @click="showSolution = !showSolution">
+                                {{ showSolution ? '隐藏解析' : '查看解析' }}
+                            </button>
+                        </div>
+
+                        <transition name="fade">
+                            <div v-if="showAnswer" class="answer-box">
+                                <div class="box-title">✓ 答案</div>
+                                <div class="box-content" v-html="currentQuestion.answer"></div>
+                            </div>
+                        </transition>
+
+                        <transition name="fade">
+                            <div v-if="showSolution" class="solution-box">
+                                <div class="box-title">💡 解析</div>
+                                <div class="box-content" v-html="currentQuestion.solution || '暂无解析'"></div>
+                            </div>
+                        </transition>
+                    </div>
+                </div>
+
+                <div v-else class="empty-state">
+                    <div class="empty-icon">📝</div>
+                    <div class="empty-text">暂无题目</div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.3.4/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

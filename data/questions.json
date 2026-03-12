@@ -1,0 +1,114 @@
+[
+  {
+    "id": 1,
+    "chapter": "高等数学",
+    "section": "函数极限",
+    "source": "李林500",
+    "difficulty": "基础",
+    "content": "已知非零常数 $a, b$ 满足 $$\\lim_{x \\to 1} \\left( \\frac{x}{x-1} - \\frac{a}{\\ln x} \\right) = b$$ 则（ ）。",
+    "options": [
+      "$a=1,\\ b=\\dfrac{1}{2}$",
+      "$a=-1,\\ b=\\dfrac{1}{2}$",
+      "$a=1,\\ b=-\\dfrac{1}{2}$",
+      "$a=-1,\\ b=-\\dfrac{1}{2}$"
+    ],
+    "answer": "A",
+    "solution": "**第一步：通分化简**\n\n将两项合并为单一分式：$$\\lim_{x \\to 1} \\left( \\frac{x}{x-1} - \\frac{a}{\\ln x} \\right) = \\lim_{x \\to 1} \\frac{x \\ln x - a(x - 1)}{(x - 1) \\ln x}$$\n\n当 $x \\to 1$ 时，分母 $(x-1)\\ln x \\to 0$，属于 $\\dfrac{0}{0}$ 型不定式。\n\n**第二步：确定常数 $a$**\n\n令 $t = x - 1$，当 $x \\to 1$ 时 $t \\to 0$，利用 $\\ln(1+t) = t - \\dfrac{1}{2}t^2 + o(t^2)$：\n\n分子 $= (1-a)t + \\frac{1}{2}t^2 + o(t^2)$，分母 $\\sim t^2$\n\n要使极限有限，一次项系数须为零：$1 - a = 0 \\implies a = 1$\n\n**第三步：确定常数 $b$**\n\n将 $a = 1$ 代入，继续计算：$$b = \\lim_{x \\to 1} \\frac{\\ln x}{\\ln x + 1 - \\dfrac{1}{x}}$$\n\n仍为 $\\dfrac{0}{0}$ 型，再次用洛必达法则：$$b = \\lim_{x \\to 1} \\frac{\\dfrac{1}{x}}{\\dfrac{1}{x} + \\dfrac{1}{x^2}} = \\frac{1}{1 + 1} = \\dfrac{1}{2}$$"
+  },
+  {
+    "id": 2,
+    "chapter": "高等数学",
+    "section": "函数极限",
+    "source": "李林500",
+    "difficulty": "基础",
+    "content": "下列各选项中正确的是（ ）。",
+    "options": [
+      "$\\lim_{x \\to 0^+} \\left(1 + \\frac{1}{x}\\right)^x = 1$",
+      "$\\lim_{x \\to 0^+} \\left(1 + \\frac{1}{x}\\right)^x = e$",
+      "$\\lim_{x \\to \\infty} \\left(1 - \\frac{1}{x}\\right)^x = -e$",
+      "$\\lim_{x \\to \\infty} \\frac{\\sin x}{x} = 1$"
+    ],
+    "answer": "A",
+    "solution": "**分析选项 A 和 B：**\n\n计算极限 $I_1 = \\lim_{x \\to 0^+} \\left(1 + \\frac{1}{x}\\right)^x$。令 $t = \\frac{1}{x}$，则当 $x \\to 0^+$ 时，$t \\to +\\infty$。\n\n$$\\lim_{x \\to 0^+} \\ln y = \\lim_{t \\to +\\infty} \\frac{\\ln(1 + t)}{t}$$\n\n应用洛必达法则：$$\\lim_{t \\to +\\infty} \\frac{\\ln(1 + t)}{t} = \\lim_{t \\to +\\infty} \\frac{\\frac{1}{1+t}}{1} = 0$$\n\n因此 $\\lim_{x \\to 0^+} y = e^0 = 1$，选项 A 正确。\n\n**分析选项 C：**\n\n利用重要极限公式：$$\\lim_{x \\to \\infty} \\left(1 - \\frac{1}{x}\\right)^x = e^{-1} = \\frac{1}{e} \\neq -e$$\n\n选项 C 错误。\n\n**分析选项 D：**\n\n因为 $|\\sin x| \\le 1$ 是有界函数，而 $\\lim_{x \\to \\infty} \\frac{1}{x} = 0$：$$\\lim_{x \\to \\infty} \\frac{\\sin x}{x} = 0 \\neq 1$$\n\n选项 D 错误。"
+  },
+  {
+    "id": 3,
+    "chapter": "高等数学",
+    "section": "函数极限",
+    "source": "李林8",
+    "difficulty": "基础",
+    "content": "当 $x \\to 0^+$ 时，若 $(\\tan x - \\sin x)^{\\frac{1}{\\alpha}}$ 与 $\\ln^\\alpha(1 + 2\\sqrt{x})$ 均是比 $x$ 高阶的无穷小，则 $\\alpha$ 的取值范围是（ ）",
+    "options": [
+      "$(2, +\\infty)$",
+      "$(0, 2)$",
+      "$(2, 3)$",
+      "$(0, 3)$"
+    ],
+    "answer": "C",
+    "solution": "**第一步：分析 $(\\tan x - \\sin x)^{\\frac{1}{\\alpha}}$**\n\n利用等价无穷小：$$\\tan x - \\sin x = \\tan x (1 - \\cos x) \\sim x \\cdot \\frac{1}{2}x^2 = \\frac{1}{2}x^3$$\n\n因此：$$(\\tan x - \\sin x)^{\\frac{1}{\\alpha}} \\sim \\left( \\frac{1}{2}x^3 \\right)^{\\frac{1}{\\alpha}} = \\left( \\frac{1}{2} \\right)^{\\frac{1}{\\alpha}} x^{\\frac{3}{\\alpha}}$$\n\n要使其是比 $x$ 高阶的无穷小：$$\\frac{3}{\\alpha} - 1 > 0 \\implies \\alpha < 3$$\n\n**第二步：分析 $\\ln^\\alpha(1 + 2\\sqrt{x})$**\n\n利用等价无穷小：$$\\ln(1 + 2\\sqrt{x}) \\sim 2\\sqrt{x} = 2x^{\\frac{1}{2}}$$\n\n因此：$$\\ln^\\alpha(1 + 2\\sqrt{x}) \\sim (2x^{\\frac{1}{2}})^\\alpha = 2^\\alpha x^{\\frac{\\alpha}{2}}$$\n\n要使其是比 $x$ 高阶的无穷小：$$\\frac{\\alpha}{2} - 1 > 0 \\implies \\alpha > 2$$\n\n**第三步：确定范围**\n\n综合两个条件：$\\alpha < 3$ 且 $\\alpha > 2$，得到 $2 < \\alpha < 3$"
+  },
+  {
+    "id": 4,
+    "chapter": "高等数学",
+    "section": "函数连续性",
+    "source": "李林880",
+    "difficulty": "基础",
+    "content": "函数 $f(x) = \\frac{\\frac{1}{x} - \\frac{1}{x+1}}{\\frac{1}{x-1} - \\frac{1}{x}}$ 的可去间断点的个数为（ ）。",
+    "options": [
+      "0",
+      "1",
+      "2",
+      "3"
+    ],
+    "answer": "C",
+    "solution": "**第一步：确定间断点**\n\n函数的间断点为 $x = -1, 0, 1$。\n\n**第二步：简化函数**\n\n$$f(x) = \\frac{\\frac{1}{x(x+1)}}{\\frac{1}{x(x-1)}} = \\frac{x(x-1)}{x(x+1)}$$\n\n**第三步：判断间断点类型**\n\n- 对于 $x = 0$：$$\\lim_{x \\to 0} f(x) = \\lim_{x \\to 0} \\frac{x-1}{x+1} = -1$$\n  极限存在，$x=0$ 是可去间断点。\n\n- 对于 $x = 1$：$$\\lim_{x \\to 1} f(x) = \\frac{1 \\cdot 0}{1 \\cdot 2} = 0$$\n  极限存在，$x=1$ 是可去间断点。\n\n- 对于 $x = -1$：$$\\lim_{x \\to -1} f(x) = \\lim_{x \\to -1} \\frac{x-1}{x+1} = \\infty$$\n  极限为无穷，$x=-1$ 是无穷间断点。\n\n可去间断点共有 2 个。"
+  },
+  {
+    "id": 5,
+    "chapter": "高等数学",
+    "section": "函数连续性",
+    "source": "李林880",
+    "difficulty": "基础",
+    "content": "设函数 $f(x) = \\begin{cases} x^{\\alpha} \\sin \\dfrac{1}{x}, & x > 0 \\\\ e^x + \\beta, & x \\le 0 \\end{cases}$ 有跳跃间断点，则 $\\alpha, \\beta$ 的取值范围是（ ）。",
+    "options": [
+      "$\\alpha \\le 0, \\beta < 0$",
+      "$\\alpha > 0, \\beta \\neq -1$",
+      "$\\alpha > 0, \\beta < -1$",
+      "$\\alpha > 0, \\beta > 0$"
+    ],
+    "answer": "B",
+    "solution": "**第一步：计算左极限**\n\n$$f(0^-) = \\lim_{x \\to 0^-} (e^x + \\beta) = 1 + \\beta$$\n\n**第二步：计算右极限**\n\n当 $\\alpha > 0$ 时，因为 $|\\sin \\frac{1}{x}| \\le 1$ 是有界函数，而 $\\lim_{x \\to 0^+} x^{\\alpha} = 0$：\n\n$$f(0^+) = \\lim_{x \\to 0^+} x^{\\alpha} \\sin \\frac{1}{x} = 0$$\n\n当 $\\alpha \\le 0$ 时，右极限不存在。\n\n**第三步：跳跃间断点条件**\n\n跳跃间断点要求左右极限都存在但不相等：\n- 必须 $\\alpha > 0$（保证右极限存在）\n- 必须 $1 + \\beta \\neq 0$，即 $\\beta \\neq -1$"
+  },
+  {
+    "id": 6,
+    "chapter": "高等数学",
+    "section": "函数连续性",
+    "source": "李林880",
+    "difficulty": "基础",
+    "content": "设函数 $f(x) = \\frac{e^{x-1}(e^{\\frac{1}{x}-1}+1)}{e^{\\frac{1}{x}-1}-1}$，则（ ）。",
+    "options": [
+      "$x=0, x=1$ 都是 $f(x)$ 的第一类间断点",
+      "$x=0, x=1$ 都是 $f(x)$ 的第二类间断点",
+      "$x=0$ 是 $f(x)$ 的第一类间断点，$x=1$ 是 $f(x)$ 的第二类间断点",
+      "$x=0$ 是 $f(x)$ 的第二类间断点，$x=1$ 是 $f(x)$ 的第一类间断点"
+    ],
+    "answer": "C",
+    "solution": "**讨论 $x=0$ 处的间断点**\n\n右极限：当 $x \\to 0^+$ 时，$\\frac{1}{x} \\to +\\infty$，$e^{\\frac{1}{x}-1} \\to +\\infty$\n$$\\lim_{x \\to 0^+} f(x) = e^{-1} \\cdot \\frac{1+0}{1-0} = \\frac{1}{e}$$\n\n左极限：当 $x \\to 0^-$ 时，$\\frac{1}{x} \\to -\\infty$，$e^{\\frac{1}{x}-1} \\to 0$\n$$\\lim_{x \\to 0^-} f(x) = \\frac{e^{-1}(0+1)}{0-1} = -\\frac{1}{e}$$\n\n左右极限均存在但不相等，$x=0$ 是跳跃间断点（第一类）。\n\n**讨论 $x=1$ 处的间断点**\n\n当 $x \\to 1^+$ 时，分母 $\\to 0^-$：$$\\lim_{x \\to 1^+} f(x) = \\frac{2}{0^-} = -\\infty$$\n\n当 $x \\to 1^-$ 时，分母 $\\to 0^+$：$$\\lim_{x \\to 1^-} f(x) = \\frac{2}{0^+} = +\\infty$$\n\n极限为无穷，$x=1$ 是无穷间断点（第二类）。"
+  },
+  {
+    "id": 7,
+    "chapter": "高等数学",
+    "section": "函数连续性",
+    "source": "李林880",
+    "difficulty": "基础",
+    "content": "函数 $f(x) = \\lim_{n \\to \\infty} \\frac{\\ln(e^n + x^n)}{n}$ 在区间 $(-e, +\\infty)$ 内的连续性表现为（ ）。",
+    "options": [
+      "有一个可去间断点",
+      "有一个跳跃间断点",
+      "有一个无穷间断点",
+      "连续"
+    ],
+    "answer": "D",
+    "solution": "**求函数解析式**\n\n当 $-e < x < e$ 时：$$f(x) = \\lim_{n \\to \\infty} \\frac{n + \\ln(1 + (\\frac{x}{e})^n)}{n} = 1$$\n\n当 $x = e$ 时：$$f(e) = \\lim_{n \\to \\infty} \\frac{\\ln(2e^n)}{n} = \\lim_{n \\to \\infty} \\frac{\\ln 2 + n}{n} = 1$$\n\n当 $x > e$ 时：$$f(x) = \\lim_{n \\to \\infty} \\frac{n\\ln x + \\ln(1 + (\\frac{e}{x})^n)}{n} = \\ln x$$\n\n**分析连续性**\n\n函数表达式为：$$f(x) = \\begin{cases} 1, & -e < x \\le e \\\\ \\ln x, & x > e \\end{cases}$$\n\n在 $x = e$ 处：\n- 左极限：$\\lim_{x \\to e^-} f(x) = 1$\n- 右极限：$\\lim_{x \\to e^+} f(x) = \\ln e = 1$\n- 函数值：$f(e) = 1$\n\n三者相等，函数在 $x = e$ 处连续，因此在整个区间 $(-e, +\\infty)$ 内连续。"
+  }
+]
