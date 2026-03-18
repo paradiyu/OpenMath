@@ -164,6 +164,61 @@ body {
     font-weight: 500;
 }
 
+/* tags树形菜单 */
+.section-group {
+    margin-bottom: 3px;
+}
+
+.section-name {
+    padding: 8px 15px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 6px;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.section-name:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.tags-tree {
+    margin-top: 3px;
+}
+
+.tag-level {
+    margin: 2px 0;
+}
+
+.tag-name {
+    display: block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.tag-name:hover {
+    background: var(--bg-tertiary);
+    color: var(--primary);
+}
+
+.tag-leaf {
+    display: block;
+    padding: 5px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--text-tertiary);
+}
+
+.tag-leaf:hover {
+    background: var(--bg-tertiary);
+    color: var(--primary);
+}
+
 /* 主内容区 */
 .main-content {
     flex: 1;

@@ -28,11 +28,49 @@
                                 {{ chapter }}
                             </div>
                             <div v-show="expandedChapters.includes(chapter)" class="section-list">
-                                <div v-for="section in sections" :key="section"
-                                     class="section-item"
-                                     :class="{ active: currentSection === `${chapter}-${section}` }"
-                                     @click="selectSection(chapter, section)">
-                                    {{ section }}
+                                <div v-for="(tags, section) in sections" :key="section" class="section-group">
+                                    <div class="section-name" @click="selectSection(chapter, section)">
+                                        <span class="expand-icon" v-if="tags && Object.keys(tags).length > 0">{{ expandedTags[chapter + '/' + section] ? '▼' : '▶' }}</span>
+                                        <span class="expand-icon" v-else>◆</span>
+                                        {{ section }}
+                                    </div>
+                                    <!-- tags子目录 -->
+                                    <div v-if="tags && Object.keys(tags).length > 0" class="tags-tree">
+                                        <template v-for="(subTags, tagName) in tags" :key="tagName">
+                                            <div class="tag-level" :style="{ paddingLeft: '20px' }">
+                                                <span class="tag-name" @click.stop="toggleTag([chapter, section, tagName])">
+                                                    <span class="expand-icon">{{ isTagExpanded([chapter, section, tagName]) ? '▼' : '▶' }}</span>
+                                                    {{ tagName }}
+                                                </span>
+                                                <!-- 第二层 -->
+                                                <template v-if="isTagExpanded([chapter, section, tagName])">
+                                                    <div v-for="(subTags2, tagName2) in subTags" :key="tagName2" class="tag-level" :style="{ paddingLeft: '40px' }">
+                                                        <span class="tag-name" @click.stop="toggleTag([chapter, section, tagName, tagName2])">
+                                                            <span class="expand-icon">{{ isTagExpanded([chapter, section, tagName, tagName2]) ? '▼' : '▶' }}</span>
+                                                            {{ tagName2 }}
+                                                        </span>
+                                                        <!-- 第三层 -->
+                                                        <template v-if="isTagExpanded([chapter, section, tagName, tagName2])">
+                                                            <div v-for="(subTags3, tagName3) in subTags2" :key="tagName3" class="tag-level" :style="{ paddingLeft: '60px' }">
+                                                                <span class="tag-name" @click.stop="toggleTag([chapter, section, tagName, tagName2, tagName3])">
+                                                                    <span class="expand-icon">{{ isTagExpanded([chapter, section, tagName, tagName2, tagName3]) ? '▼' : '▶' }}</span>
+                                                                    {{ tagName3 }}
+                                                                </span>
+                                                                <!-- 第四层 - 叶子节点 -->
+                                                                <template v-if="isTagExpanded([chapter, section, tagName, tagName2, tagName3])">
+                                                                    <div v-for="(leaf, leafName) in subTags3" :key="leafName" class="tag-level" :style="{ paddingLeft: '80px' }">
+                                                                        <span class="tag-leaf" @click="selectByTags(chapter, section, [tagName, tagName2, tagName3, leafName])">
+                                                                            {{ leafName }}
+                                                                        </span>
+                                                                    </div>
+                                                                </template>
+                                                            </div>
+                                                        </template>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                        </template>
+                                    </div>
                                 </div>
                             </div>
                         </div>
